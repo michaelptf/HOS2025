@@ -1,0 +1,46 @@
+name: Update HOS Data
+
+on:
+  workflow_dispatch:
+
+  schedule:
+    - cron: "0 13 * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Run price parser
+        run: |
+          python scripts/parse_price_list.py
+
+      - name: Run status parser
+        run: |
+          python scripts/build_available_units.py
+
+      - name: Commit Updates
+        run: |
+          git config user.name "github-actions"
+          git config user.email "github-actions@github.com"
+
+          git add data/
+
+          git diff --cached --quiet || git commit -m "Automated data refresh"
+
+          git push
