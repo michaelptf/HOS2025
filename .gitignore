@@ -16,7 +16,6 @@ Thumbs.db
 
 # Generated data
 data/status_pdfs/
-data/*.latest.json
 
 # Logs
 *.log
