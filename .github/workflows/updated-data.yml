@@ -26,13 +26,9 @@ jobs:
         run: |
           pip install -r requirements.txt
 
-      - name: Run price parser
-        run: |
-          python scripts/parse_price_list.py
-
       - name: Run status parser
         run: |
-          python scripts/build_available_units.py
+          python scripts/parse_daily_status.py
 
       - name: Commit Updates
         run: |
