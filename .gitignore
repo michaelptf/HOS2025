@@ -1,0 +1,42 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+env/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Generated data
+data/status_pdfs/
+data/*.latest.json
+
+# Logs
+*.log
+
+# Environment variables
+.env
+.env.*
+
+# Build/output
+dist/
+build/
+
+# Temporary files
+*.tmp
+*.bak
+
+# Python cache
+.pytest_cache/
+.mypy_cache/
+
+# Local testing
+coverage/
+htmlcov/

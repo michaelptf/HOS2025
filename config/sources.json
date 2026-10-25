@@ -1,0 +1,150 @@
+{
+  "project": "HOS2025 Available Units Tracker",
+  "lastUpdated": null,
+  "priceListSources": [
+    {
+      "estate": "Ying Fai Street",
+      "court": "Ying Fai",
+      "url": "https://hos.housingauthority.gov.hk/mini-site/hos2025/common/pdf/Price-List-YingFai.pdf",
+      "localFile": "Price-List-YingFai.pdf"
+    },
+    {
+      "estate": "Wui Hei Court",
+      "court": "Wui Hei",
+      "url": "https://hos.housingauthority.gov.hk/mini-site/hos2025/common/pdf/Price-List-WuiHei.pdf",
+      "localFile": "Price-List-WuiHei.pdf"
+    },
+    {
+      "estate": "Kai Yeung Court",
+      "court": "Kai Yeung",
+      "url": "https://hos.housingauthority.gov.hk/mini-site/hos2025/common/pdf/Price-List-KaiYeung.pdf",
+      "localFile": "Price-List-KaiYeung.pdf"
+    },
+    {
+      "estate": "Yu Fung Court",
+      "court": "Yu Fung",
+      "url": "https://hos.housingauthority.gov.hk/mini-site/hos2025/common/pdf/Price-List-YuFung.pdf",
+      "localFile": "Price-List-YuFung.pdf"
+    },
+    {
+      "estate": "Long Fung Court",
+      "court": "Long Fung",
+      "url": "https://hos.housingauthority.gov.hk/mini-site/hos2025/common/pdf/Price-List-LongFung.pdf",
+      "localFile": "Price-List-LongFung.pdf"
+    }
+  ],
+  "dailyStatusSources": [
+    {
+      "estateKey": "kai-yeung",
+      "estateName": "Kai Yeung Court",
+      "unitIdPrefix": "KAIYEUNG",
+      "block": "A",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-kai-yeung-a-text.pdf",
+      "localFile": "status-kai-yeung-a-text.pdf"
+    },
+    {
+      "estateKey": "kai-yeung",
+      "estateName": "Kai Yeung Court",
+      "unitIdPrefix": "KAIYEUNG",
+      "block": "B",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-kai-yeung-b-text.pdf",
+      "localFile": "status-kai-yeung-b-text.pdf"
+    },
+    {
+      "estateKey": "wui-hei",
+      "estateName": "Wui Hei Court",
+      "unitIdPrefix": "WUIHEI",
+      "block": "A",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-wui-hei-a-text.pdf",
+      "localFile": "status-wui-hei-a-text.pdf"
+    },
+    {
+      "estateKey": "wui-hei",
+      "estateName": "Wui Hei Court",
+      "unitIdPrefix": "WUIHEI",
+      "block": "B",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-wui-hei-b-text.pdf",
+      "localFile": "status-wui-hei-b-text.pdf"
+    },
+    {
+      "estateKey": "yu-fung",
+      "estateName": "Yu Fung Court",
+      "unitIdPrefix": "YUFUNG",
+      "block": "A",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-yu-fung-a-text.pdf",
+      "localFile": "status-yu-fung-a-text.pdf"
+    },
+    {
+      "estateKey": "yu-fung",
+      "estateName": "Yu Fung Court",
+      "unitIdPrefix": "YUFUNG",
+      "block": "B",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-yu-fung-b-text.pdf",
+      "localFile": "status-yu-fung-b-text.pdf"
+    },
+    {
+      "estateKey": "yu-fung",
+      "estateName": "Yu Fung Court",
+      "unitIdPrefix": "YUFUNG",
+      "block": "C",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-yu-fung-c-text.pdf",
+      "localFile": "status-yu-fung-c-text.pdf"
+    },
+    {
+      "estateKey": "yu-fung",
+      "estateName": "Yu Fung Court",
+      "unitIdPrefix": "YUFUNG",
+      "block": "D",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-yu-fung-d-text.pdf",
+      "localFile": "status-yu-fung-d-text.pdf"
+    },
+    {
+      "estateKey": "long-fung",
+      "estateName": "Long Fung Court",
+      "unitIdPrefix": "LONGFUNG",
+      "block": "A",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-long-fung-a-text.pdf",
+      "localFile": "status-long-fung-a-text.pdf"
+    },
+    {
+      "estateKey": "long-fung",
+      "estateName": "Long Fung Court",
+      "unitIdPrefix": "LONGFUNG",
+      "block": "B",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-long-fung-b-text.pdf",
+      "localFile": "status-long-fung-b-text.pdf"
+    },
+    {
+      "estateKey": "long-fung",
+      "estateName": "Long Fung Court",
+      "unitIdPrefix": "LONGFUNG",
+      "block": "C",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-long-fung-c-text.pdf",
+      "localFile": "status-long-fung-c-text.pdf"
+    },
+    {
+      "estateKey": "long-fung",
+      "estateName": "Long Fung Court",
+      "unitIdPrefix": "LONGFUNG",
+      "block": "D",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-long-fung-d-text.pdf",
+      "localFile": "status-long-fung-d-text.pdf"
+    },
+    {
+      "estateKey": "ying-fai",
+      "estateName": "Ying Fai Street",
+      "unitIdPrefix": "YINGFAI",
+      "block": "A",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-ying-fai-a-text.pdf",
+      "localFile": "status-ying-fai-a-text.pdf"
+    },
+    {
+      "estateKey": "ying-fai",
+      "estateName": "Ying Fai Street",
+      "unitIdPrefix": "YINGFAI",
+      "block": "B",
+      "url": "https://www.housingauthority.gov.hk/mini-site/hos2025/common/pdf/status/status-ying-fai-b-text.pdf",
+      "localFile": "status-ying-fai-b-text.pdf"
+    }
+  ]
+}
