@@ -398,21 +398,22 @@ function getCurrentMatrixUnits() {
 }
 
 function syncFilterEstateBlockOptions() {
-  if (!ui.filterEstate || !ui.filterBlock || !ui.filterBlocks) return;
+  if (!ui.filterEstate || !ui.filterBlocks) return;
 
   setMultiSelectValues(ui.filterEstate, state.filters.estates);
 
-  const targetEstate = state.selectedEstate;
-  const blocks = unique(
-    state.allUnits
-      .filter((u) => u.estate === targetEstate)
-      .map((u) => u.block)
-  );
+  if (ui.filterBlock) {
+    const blocks = unique(
+      state.allUnits
+        .filter((u) => u.estate === state.selectedEstate)
+        .map((u) => u.block)
+    );
 
-  ui.filterBlock.innerHTML = blocks
-    .map((block) => `<option value="${escapeHtml(block)}">${escapeHtml(toZhBlock(block))}</option>`)
-    .join("");
-  ui.filterBlock.value = state.selectedBlock || blocks[0] || "";
+    ui.filterBlock.innerHTML = blocks
+      .map((block) => `<option value="${escapeHtml(block)}">${escapeHtml(toZhBlock(block))}</option>`)
+      .join("");
+    ui.filterBlock.value = state.selectedBlock || blocks[0] || "";
+  }
 
   const blockCandidates = getBlocksForSelectedEstates();
   ui.filterBlocks.innerHTML = blockCandidates
