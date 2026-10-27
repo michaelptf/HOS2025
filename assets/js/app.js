@@ -468,7 +468,7 @@ function renderGrid() {
   `;
 
   ui.gridBody.innerHTML = floors
-    .map((floor) => {
+    .map((floor, index) => {
       const floorCells = unitNumbers
         .map((unitNo) => {
           const unit = unitMap.get(`${floor}|${unitNo}`);
@@ -493,6 +493,7 @@ function renderGrid() {
         .join("");
 
       return `
+        ${index === 0 ? `<tr><th class="floor-header" colspan="${unitNumbers.length + 1}">頂樓</th></tr>` : ""}
         <tr>
           <th class="floor-header">${escapeHtml(String(floor))}樓</th>
           ${floorCells}
