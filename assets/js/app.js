@@ -8,6 +8,7 @@ const ui = {
   filterToggle: document.querySelector("#filter-toggle"),
   filtersPanel: document.querySelector("#filters-panel"),
   filtersClose: document.querySelector("#filters-close"),
+  filtersApply: document.querySelector("#filters-apply"),
   filtersReset: document.querySelector("#filters-reset"),
   filterSearch: document.querySelector("#filter-search"),
   filterEstate: document.querySelector("#filter-estate"),
@@ -163,6 +164,14 @@ function bindUIEvents() {
   if (ui.filtersClose) {
     ui.filtersClose.addEventListener("click", closeFiltersPanel);
   }
+  if (ui.filtersApply) {
+    ui.filtersApply.addEventListener("click", () => {
+      syncFilterEstateBlockOptions();
+      renderTabsAndGrid();
+      renderMatchesList();
+      closeFiltersPanel();
+    });
+  }
 
   if (ui.filtersReset) {
     ui.filtersReset.addEventListener("click", () => {
@@ -234,7 +243,6 @@ function bindUIEvents() {
       syncFilterEstateBlockOptions();
       renderTabsAndGrid();
       renderMatchesList();
-      closeFiltersPanel();
     });
   }
 
@@ -276,51 +284,55 @@ function hydrateFilterOptions() {
 
   const orientations = unique(state.allUnits.map((u) => u.orientation || ""));
   const unitTypes = unique(state.allUnits.map((u) => u.unitType || ""));
-  ui.filterOrientation.innerHTML = [
-    `<option value="">全部座向</option>`,
-    `<option value="__NONE__">未提供</option>`,
-    ...orientations.filter(Boolean).map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`)
-  ].join("");
+  if (ui.filterOrientation) {
+    ui.filterOrientation.innerHTML = [
+      `<option value="">全部座向</option>`,
+      `<option value="__NONE__">未提供</option>`,
+      ...orientations.filter(Boolean).map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`)
+    ].join("");
+  }
 
-  ui.filterUnitType.innerHTML = [
-    `<option value="">全部戶型</option>`,
-    `<option value="__NONE__">未提供</option>`,
-    ...unitTypes.filter(Boolean).map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`)
-  ].join("");
+  if (ui.filterUnitType) {
+    ui.filterUnitType.innerHTML = [
+      `<option value="">全部戶型</option>`,
+      `<option value="__NONE__">未提供</option>`,
+      ...unitTypes.filter(Boolean).map((v) => `<option value="${escapeHtml(v)}">${escapeHtml(v)}</option>`)
+    ].join("");
+  }
 }
 
 function applyFilterStateToInputs() {
-  ui.filterSearch.value = state.filters.search;
+  if (ui.filterSearch) ui.filterSearch.value = state.filters.search;
   ui.filterFloorMin.value = valueOrEmpty(state.filters.floorMin);
   ui.filterFloorMax.value = valueOrEmpty(state.filters.floorMax);
   ui.filterSqftMin.value = valueOrEmpty(state.filters.sqftMin);
   ui.filterSqftMax.value = valueOrEmpty(state.filters.sqftMax);
-  ui.filterSqmMin.value = valueOrEmpty(state.filters.sqmMin);
-  ui.filterSqmMax.value = valueOrEmpty(state.filters.sqmMax);
+  if (ui.filterSqmMin) ui.filterSqmMin.value = valueOrEmpty(state.filters.sqmMin);
+  if (ui.filterSqmMax) ui.filterSqmMax.value = valueOrEmpty(state.filters.sqmMax);
   ui.filterPriceMin.value = valueOrEmpty(state.filters.priceMin);
   ui.filterPriceMax.value = valueOrEmpty(state.filters.priceMax);
   ui.filterAvailability.value = state.filters.availability;
   ui.filterSort.value = state.filters.sort;
-  ui.filterOrientation.value = state.filters.orientation;
-  ui.filterUnitType.value = state.filters.unitType;
+  if (ui.filterOrientation) ui.filterOrientation.value = state.filters.orientation;
+  if (ui.filterUnitType) ui.filterUnitType.value = state.filters.unitType;
   setMultiSelectValues(ui.filterEstate, state.filters.estates);
   setMultiSelectValues(ui.filterBlocks, state.filters.blocks);
 }
 
 function updateFiltersFromInputs() {
-  state.filters.search = ui.filterSearch.value.trim().toLowerCase();
+  if (ui.filterSearch) state.filters.search = ui.filterSearch.value.trim().toLowerCase();
   state.filters.floorMin = parseNumberOrNull(ui.filterFloorMin.value);
   state.filters.floorMax = parseNumberOrNull(ui.filterFloorMax.value);
   state.filters.sqftMin = parseNumberOrNull(ui.filterSqftMin.value);
   state.filters.sqftMax = parseNumberOrNull(ui.filterSqftMax.value);
-  state.filters.sqmMin = parseNumberOrNull(ui.filterSqmMin.value);
-  state.filters.sqmMax = parseNumberOrNull(ui.filterSqmMax.value);
+  if (ui.filterSqmMin) state.filters.sqmMin = parseNumberOrNull(ui.filterSqmMin.value);
+  if (ui.filterSqmMax) state.filters.sqmMax = parseNumberOrNull(ui.filterSqmMax.value);
   state.filters.priceMin = parseNumberOrNull(ui.filterPriceMin.value);
   state.filters.priceMax = parseNumberOrNull(ui.filterPriceMax.value);
   state.filters.availability = ui.filterAvailability.value;
   state.filters.sort = ui.filterSort.value;
-  state.filters.orientation = ui.filterOrientation.value;
-  state.filters.unitType = ui.filterUnitType.value;
+  if (ui.filterOrientation) state.filters.orientation = ui.filterOrientation.value;
+  if (ui.filterUnitType) state.filters.unitType = ui.filterUnitType.value;
   state.filters.blocks = selectedValues(ui.filterBlocks);
   state.filters.estates = selectedValues(ui.filterEstate);
 }

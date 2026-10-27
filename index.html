@@ -92,10 +92,10 @@
             </div>
 
             <div class="space-y-3">
-              <label class="block">
+              <!-- <label class="block">
                 <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">快速搜尋</span>
                 <input id="filter-search" type="text" placeholder="例如: 03 或 20樓" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
-              </label>
+              </label> -->
 
               <div class="grid grid-cols-2 gap-2">
                 <label class="block">
@@ -115,17 +115,6 @@
 
               <div class="grid grid-cols-2 gap-2">
                 <label class="block">
-                  <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">最低樓層</span>
-                  <input id="filter-floor-min" type="number" min="0" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
-                </label>
-                <label class="block">
-                  <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">最高樓層</span>
-                  <input id="filter-floor-max" type="number" min="0" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
-                </label>
-              </div>
-
-              <div class="grid grid-cols-2 gap-2">
-                <label class="block">
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">面積呎（最小）</span>
                   <input id="filter-sqft-min" type="number" min="0" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
                 </label>
@@ -137,6 +126,17 @@
 
               <div class="grid grid-cols-2 gap-2">
                 <label class="block">
+                  <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">最低樓層</span>
+                  <input id="filter-floor-min" type="number" min="0" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
+                </label>
+                <label class="block">
+                  <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">最高樓層</span>
+                  <input id="filter-floor-max" type="number" min="0" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
+                </label>
+              </div>
+
+              <!-- <div class="grid grid-cols-2 gap-2">
+                <label class="block">
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">面積㎡（最小）</span>
                   <input id="filter-sqm-min" type="number" min="0" step="0.1" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
                 </label>
@@ -144,7 +144,7 @@
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">面積㎡（最大）</span>
                   <input id="filter-sqm-max" type="number" min="0" step="0.1" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700" />
                 </label>
-              </div>
+              </div> -->
 
               <div class="grid grid-cols-2 gap-2">
                 <label class="block">
@@ -157,7 +157,7 @@
                 </label>
               </div>
 
-              <div class="grid grid-cols-2 gap-2">
+              <!-- <div class="grid grid-cols-2 gap-2">
                 <label class="block">
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">座向</span>
                   <select id="filter-orientation" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700"></select>
@@ -166,7 +166,7 @@
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">戶型</span>
                   <select id="filter-unit-type" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700"></select>
                 </label>
-              </div>
+              </div> -->
 
               <label class="block">
                 <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">顯示狀態</span>
@@ -190,6 +190,7 @@
               </label>
 
               <button id="filters-reset" class="w-full rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600">重設篩選</button>
+              <button id="filters-apply" class="w-full rounded-xl bg-cyan-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-700 md:hidden">套用篩選並關閉</button>
             </div>
           </aside>
 
