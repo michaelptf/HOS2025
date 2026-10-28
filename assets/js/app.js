@@ -69,7 +69,7 @@ const state = {
     orientation: "",
     unitType: "",
     availability: "available",
-    sort: "floor:desc"
+    sort: "saleableAreaSqft:desc,floor:desc,priceHkd:asc,block:asc"
   }
 };
 
@@ -199,7 +199,7 @@ function bindUIEvents() {
         orientation: "",
         unitType: "",
         availability: "available",
-        sort: "floor:desc"
+        sort: "saleableAreaSqft:desc,floor:desc,priceHkd:asc,block:asc"
       };
       applyFilterStateToInputs();
       syncFilterEstateBlockOptions();
