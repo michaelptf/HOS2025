@@ -54,6 +54,100 @@ body.filters-open {
   min-height: 7.5rem;
 }
 
+.multi-select {
+  position: relative;
+}
+
+.multi-select summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 2.25rem;
+  height: 2.25rem;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.75rem;
+  background: white;
+  color: rgb(15 23 42);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 0.12);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  list-style: none;
+}
+
+.multi-select summary::-webkit-details-marker {
+  display: none;
+}
+
+.multi-select summary::after {
+  content: "+";
+  margin-left: 0.5rem;
+}
+
+.multi-select[open] summary::after {
+  content: "-";
+}
+
+.multi-select summary:focus-visible {
+  outline: 2px solid rgb(103 232 249);
+  outline-offset: 2px;
+}
+
+.multi-select-options {
+  position: absolute;
+  top: calc(100% + 0.25rem);
+  left: 0;
+  z-index: 20;
+  display: grid;
+  gap: 0.25rem;
+  width: 100%;
+  max-height: 15rem;
+  overflow-y: auto;
+  padding: 0.5rem;
+  border-radius: 0.75rem;
+  background: white;
+  color: rgb(15 23 42);
+  box-shadow: 0 10px 24px rgb(15 23 42 / 0.2);
+}
+
+.multi-select-options label {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+.multi-select-options label:hover {
+  background: rgb(241 245 249);
+}
+
+.multi-select-options input {
+  accent-color: rgb(8 145 178);
+}
+
+.dark .multi-select summary,
+.dark .multi-select-options {
+  background: rgb(15 23 42);
+  color: rgb(241 245 249);
+}
+
+.dark .multi-select-options label:hover {
+  background: rgb(51 65 85);
+}
+
+@media (max-width: 1023px) {
+  #matches-panel.matches-panel-open {
+    position: fixed;
+    inset: 0 1rem 5rem;
+    z-index: 30;
+    display: block;
+    overflow-y: auto;
+  }
+}
+
 .tab-row {
   display: flex;
   gap: 0.5rem;

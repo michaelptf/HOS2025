@@ -9,6 +9,8 @@ const ui = {
   filtersPanel: document.querySelector("#filters-panel"),
   filtersClose: document.querySelector("#filters-close"),
   filtersApply: document.querySelector("#filters-apply"),
+  matchesPanel: document.querySelector("#matches-panel"),
+  matchesToggle: document.querySelector("#matches-toggle"),
   filtersReset: document.querySelector("#filters-reset"),
   filterSearch: document.querySelector("#filter-search"),
   filterEstate: document.querySelector("#filter-estate"),
@@ -170,6 +172,13 @@ function bindUIEvents() {
       renderTabsAndGrid();
       renderMatchesList();
       closeFiltersPanel();
+      setMatchesPanelOpen(true);
+    });
+  }
+
+  if (ui.matchesToggle) {
+    ui.matchesToggle.addEventListener("click", () => {
+      setMatchesPanelOpen(!ui.matchesPanel.classList.contains("matches-panel-open"));
     });
   }
 
@@ -199,6 +208,7 @@ function bindUIEvents() {
   }
 
   const syncAndRender = () => {
+    updateMultiSelectSummary(ui.filterBlocks);
     updateFiltersFromInputs();
     renderMatchesList();
   };
@@ -280,7 +290,7 @@ function initSelections() {
 
 function hydrateFilterOptions() {
   const estates = unique(state.allUnits.map((u) => u.estate));
-  ui.filterEstate.innerHTML = estates.map((e) => `<option value="${escapeHtml(e)}">${escapeHtml(toZhEstate(e))}</option>`).join("");
+  renderMultiSelectOptions(ui.filterEstate, estates, toZhEstate);
 
   const orientations = unique(state.allUnits.map((u) => u.orientation || ""));
   const unitTypes = unique(state.allUnits.map((u) => u.unitType || ""));
@@ -416,9 +426,7 @@ function syncFilterEstateBlockOptions() {
   }
 
   const blockCandidates = getBlocksForSelectedEstates();
-  ui.filterBlocks.innerHTML = blockCandidates
-    .map((block) => `<option value="${escapeHtml(block)}">${escapeHtml(toZhBlock(block))}</option>`)
-    .join("");
+  renderMultiSelectOptions(ui.filterBlocks, blockCandidates, toZhBlock);
 
   const validBlockSet = new Set(blockCandidates);
   state.filters.blocks = state.filters.blocks.filter((b) => validBlockSet.has(b));
@@ -440,6 +448,13 @@ function closeFiltersPanel() {
   ui.filtersPanel.classList.add("hidden");
 
   document.body.classList.remove("filters-open");
+}
+
+function setMatchesPanelOpen(open) {
+  ui.matchesPanel.classList.toggle("matches-panel-open", open);
+  ui.matchesPanel.classList.toggle("hidden", !open);
+  ui.matchesToggle.setAttribute("aria-expanded", String(open));
+  ui.matchesToggle.textContent = open ? "關閉單位列表" : "符合篩選單位";
 }
 
 function renderGrid() {
@@ -583,13 +598,17 @@ function sortUnits(rows, sortValue) {
   if (!sortValue) {
     return [...rows];
   }
-  const [field, direction] = sortValue.split(":");
-  const mul = direction === "desc" ? -1 : 1;
+  const sortRules = sortValue.split(",").map((rule) => {
+    const [field, direction] = rule.split(":");
+    return [field, direction === "desc" ? -1 : 1];
+  });
   return [...rows].sort((a, b) => {
-    const av = numericOrString(a[field]);
-    const bv = numericOrString(b[field]);
-    if (av === bv) return 0;
-    return av > bv ? mul : -mul;
+    for (const [field, mul] of sortRules) {
+      const av = numericOrString(a[field]);
+      const bv = numericOrString(b[field]);
+      if (av !== bv) return av > bv ? mul : -mul;
+    }
+    return 0;
   });
 }
 
@@ -720,15 +739,30 @@ function valueOrEmpty(value) {
 }
 
 function selectedValues(select) {
-  return [...select.selectedOptions].map((opt) => opt.value);
+  return [...select.querySelectorAll('input[type="checkbox"]:checked')].map((input) => input.value);
 }
 
 function setMultiSelectValues(select, values) {
   if (!select) return;
   const set = new Set(values || []);
-  [...select.options].forEach((opt) => {
-    opt.selected = set.has(opt.value);
+  select.querySelectorAll('input[type="checkbox"]').forEach((input) => {
+    input.checked = set.has(input.value);
   });
+  updateMultiSelectSummary(select);
+}
+
+function renderMultiSelectOptions(select, values, labelForValue) {
+  select.querySelector(".multi-select-options").innerHTML = values
+    .map((value) => `<label><input type="checkbox" value="${escapeHtml(value)}"><span>${escapeHtml(labelForValue(value))}</span></label>`)
+    .join("");
+  updateMultiSelectSummary(select);
+}
+
+function updateMultiSelectSummary(select) {
+  const summary = select.querySelector("summary");
+  const selectedCount = selectedValues(select).length;
+  const label = summary.dataset.placeholder;
+  summary.textContent = selectedCount ? `已選 ${selectedCount} ${summary.dataset.selectedUnit}` : label;
 }
 
 function numericOrString(value) {

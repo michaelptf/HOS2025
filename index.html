@@ -39,7 +39,7 @@
     <link rel="stylesheet" href="assets/css/styles.css" />
   </head>
   <body class="h-full bg-slate-100 text-slate-900 dark:bg-ink-900 dark:text-slate-100">
-    <div class="relative min-h-full overflow-hidden">
+    <div class="relative min-h-full overflow-x-clip">
       <div class="pointer-events-none absolute inset-0 opacity-80">
         <div class="absolute -top-40 left-1/2 h-[32rem] w-[32rem] -translate-x-1/2 rounded-full bg-gradient-to-r from-cyan-300/60 to-mint-200/70 blur-3xl dark:from-cyan-500/20 dark:to-mint-500/20"></div>
         <div class="absolute bottom-0 right-0 h-72 w-72 rounded-full bg-gradient-to-br from-amber-200/60 to-rose-200/40 blur-3xl dark:from-amber-500/10 dark:to-rose-500/10"></div>
@@ -63,7 +63,7 @@
 
         <aside
           id="filters-panel"
-          class="fixed inset-y-0 left-0 z-40 hidden w-full overflow-y-auto bg-slate-200 p-4 shadow-2xl md:static md:mb-4 md:block md:rounded-3xl md:bg-slate-200 md:shadow-panel dark:bg-ink-800"
+          class="fixed inset-y-0 left-0 z-40 hidden w-full overflow-y-auto bg-slate-200 p-4 shadow-2xl md:static md:mb-4 md:block md:overflow-visible md:rounded-3xl md:bg-slate-200 md:shadow-panel dark:bg-ink-800"
         >
             <div class="mb-3 flex items-center justify-between">
               <h2 class="text-base font-extrabold text-slate-900 dark:text-slate-100">篩選條件</h2>
@@ -77,18 +77,24 @@
               </label> -->
 
               <div class="grid grid-cols-2 gap-2">
-                <label class="block">
+                <div class="block">
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">屋苑（可多選）</span>
-                  <select id="filter-estate" multiple size="4" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700"></select>
-                </label>
+                  <details id="filter-estate" class="multi-select">
+                    <summary data-placeholder="全部屋苑" data-selected-unit="個屋苑">全部屋苑</summary>
+                    <div class="multi-select-options"></div>
+                  </details>
+                </div>
                 <!-- <label class="block">
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">主座數</span>
                   <select id="filter-block" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700"></select>
                 </label> -->
-                <label class="block">
+                <div class="block">
                   <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">座數（可多選）</span>
-                  <select id="filter-blocks" multiple size="4" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700"></select>
-                </label>
+                  <details id="filter-blocks" class="multi-select">
+                    <summary data-placeholder="全部座數" data-selected-unit="座">全部座數</summary>
+                    <div class="multi-select-options"></div>
+                  </details>
+                </div>
               </div>
 
               <div class="grid grid-cols-2 gap-2">
@@ -158,6 +164,10 @@
               <label class="block">
                 <span class="mb-1 block text-xs font-bold uppercase tracking-wide text-slate-800 dark:text-slate-100">排序</span>
                 <select id="filter-sort" class="w-full rounded-xl bg-white px-3 py-2 text-sm font-semibold text-slate-900 shadow-sm outline-none transition focus:ring-2 focus:ring-cyan-300 dark:bg-slate-900 dark:text-slate-100 dark:focus:ring-cyan-700">
+                  <option value="saleableAreaSqft:desc,floor:desc">面積大至小，樓層高至低</option>
+                  <option value="saleableAreaSqft:desc,floor:asc">面積大至小，樓層低至高</option>
+                  <option value="saleableAreaSqft:asc,floor:desc">面積小至大，樓層高至低</option>
+                  <option value="saleableAreaSqft:asc,floor:asc">面積小至大，樓層低至高</option>
                   <option value="floor:desc">樓層（高至低）</option>
                   <option value="floor:asc">樓層（低至高）</option>
                   <option value="saleableAreaSqft:desc">面積呎（大至小）</option>
@@ -168,14 +178,14 @@
               </label>
 
               <div class="flex flex-col justify-end gap-2">
-                <button id="filters-reset" class="w-full rounded-xl bg-slate-100 px-3 py-2 text-sm font-semibold text-slate-800 shadow-sm hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600">重設篩選</button>
+                <button id="filters-reset" class="h-9 w-fit self-start rounded-lg bg-slate-100 px-2 text-xs font-semibold text-slate-800 shadow-sm hover:bg-slate-200 dark:bg-slate-700 dark:text-slate-100 dark:hover:bg-slate-600">重設篩選</button>
                 <button id="filters-apply" class="w-full rounded-xl bg-cyan-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-cyan-700 md:hidden">套用篩選並關閉</button>
               </div>
             </div>
         </aside>
 
         <div class="grid grid-cols-1 gap-4 lg:grid-cols-12">
-          <aside class="order-2 rounded-3xl bg-white p-4 shadow-panel backdrop-blur lg:sticky lg:top-4 lg:col-span-3 lg:order-1 lg:max-h-[60vh] lg:overflow-y-auto lg:self-start dark:bg-ink-800/90">
+          <aside id="matches-panel" class="order-2 hidden rounded-3xl bg-white p-4 shadow-panel backdrop-blur lg:sticky lg:top-4 lg:col-span-3 lg:order-1 lg:block lg:max-h-[100vh] lg:overflow-y-auto lg:self-start dark:bg-ink-800/90">
             <div class="mb-2 flex items-center justify-between">
               <h3 class="text-sm font-extrabold text-slate-900 dark:text-slate-100">符合篩選單位</h3>
               <p id="matches-count" class="text-xs font-bold text-slate-700 dark:text-slate-200">0 筆</p>
@@ -212,6 +222,7 @@
           </section>
           </main>
         </div>
+        <button id="matches-toggle" type="button" aria-controls="matches-panel" aria-expanded="false" class="fixed bottom-4 right-4 z-30 rounded-full bg-cyan-700 px-4 py-3 text-sm font-bold text-white shadow-lg hover:bg-cyan-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-500 lg:hidden">符合篩選單位</button>
       </div>
 
       <div id="unit-modal" class="fixed inset-0 z-50 hidden bg-slate-900/50 px-4 py-8">
