@@ -394,7 +394,6 @@ function renderBlockTabs() {
   ui.blockTabs.querySelectorAll(".tab-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       state.selectedBlock = btn.dataset.block;
-      ui.filterBlock.value = state.selectedBlock;
       renderGrid();
       renderBlockTabs();
     });
