@@ -4,8 +4,8 @@ on:
   workflow_dispatch:
 
   schedule:
-    # Every hour from 10:00 AM to 9:00 PM HKT
-    - cron: "0 2-13 * * *"
+    # Every hour
+    - cron: "0 * * * *"
 
 permissions:
   contents: write
