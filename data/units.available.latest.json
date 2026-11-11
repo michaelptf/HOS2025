@@ -1,7 +1,7 @@
 {
   "meta": {
-    "lastUpdatedUtc": "2026-11-11T16:29:49Z",
-    "lastUpdatedHk": "2026-11-12 00:29 HKT",
+    "lastUpdatedUtc": "2026-11-11T17:50:05Z",
+    "lastUpdatedHk": "2026-11-12 01:50 HKT",
     "recordCount": 4127,
     "source": "price-list+daily-status-merge",
     "priceRecords": 6926,
@@ -9,8 +9,8 @@
     "mergedAvailableRecords": 4127
   },
   "metadata": {
-    "lastUpdatedUtc": "2026-11-11T16:29:49Z",
-    "lastUpdatedHk": "2026-11-12 00:29 HKT",
+    "lastUpdatedUtc": "2026-11-11T17:50:05Z",
+    "lastUpdatedHk": "2026-11-12 01:50 HKT",
     "sources": [
       {
         "estateKey": "kai-yeung",
